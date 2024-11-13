@@ -77,16 +77,15 @@ export const renderBoxes = (canvasRef, landmarks_data, boxes_data, scores_data, 
       const x = keypoints[j][0] * xi;
       const y = keypoints[j][1] * yi;
       const bodyPart = Object.keys(colors)[j];
-      if (keypoints[j][2]< conf_threshold){
-      ctx.beginPath();
-      ctx.arc(x, y, 5, 0, 2 * Math.PI);
-      ctx.fillStyle = colors[bodyPart];
-      ctx.fill();
-      ctx.closePath();
-      keypoints[j][2] = true;
-
+      if (keypoints[j][2] > conf_threshold) {
+        ctx.beginPath();
+        ctx.arc(x, y, 5, 0, 2 * Math.PI);
+        ctx.fillStyle = colors[bodyPart];
+        ctx.fill();
+        ctx.closePath();
+        keypoints[j][2] = true;
       }
-      else{
+      else {
         keypoints[j][2] = false;
       }
 
